@@ -1,0 +1,374 @@
+<!DOCTYPE html> <!-- Document type declaration for HTML5 -->
+<html>
+<head>
+    <title>ShopOnline - Listing Page</title> <!-- Set the title of the webpage -->
+    <script type="text/javascript" src="listing.js"></script> <!-- Include an external JavaScript file -->
+    <style>
+        *, *::after, *::before {
+            box-sizing: border-box; /* CSS box model rule to include padding and border in element size */
+            padding: 0;
+            margin: 0; /* Remove default padding and margin */
+        }
+
+        .html {
+            font-size: 62.5%; /* Set the default font size for the document */
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto; /* Center align the container and limit its width */
+        }
+
+        .navbar {
+            box-shadow: 0px 5px 10px 0px #aaa; /* Add a box shadow to the navigation bar for a shadow effect */
+            position: fixed; /* Fix the navigation bar at the top of the viewport */
+            width: 100%;
+            background: #d0dad9; /* Set background color */
+            color: #000; /* Set text color */
+            opacity: 1.85; /* Adjust the opacity of the navigation bar */
+            z-index: 100; /* Set the stacking order of the navigation bar */
+        }
+
+        .navbar-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space elements evenly */
+            height: 64px; /* Set the height of the navigation bar */
+            align-items: center; /* Vertically align items in the container */
+        }
+
+        .menu-items {
+            order: 2; /* Set the order of this element in the flex container */
+            display: flex; /* Use flexbox for layout */
+        }
+
+        .logo {
+            order: 1; /* Set the order of this element in the flex container */
+            font-size: 2.3rem; /* Set font size for the logo */
+        }
+
+        .menu-items li {
+            list-style: none; /* Remove list-style for list items */
+            margin-left: 1.5rem; /* Add margin between list items */
+            font-size: 1.3rem; /* Set font size for list items */
+        }
+
+        .navbar a {
+            color: #444; /* Set link color */
+            text-decoration: none; /* Remove underlines from links */
+            font-weight: 500; /* Set font weight for links */
+            transition: color 0.3s ease-in-out; /* Add a smooth color transition effect */
+        }
+
+        .navbar a:hover {
+            color: #117964; /* Change link color on hover */
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                opacity: 0.95; /* Reduce opacity for smaller screens */
+            }
+
+            .navbar-container {
+                display: block; /* Change layout to block for smaller screens */
+                position: relative;
+                height: 64px;
+            }
+
+            .navbar-container input[type="checkbox"] {
+                position: absolute; /* Position a hidden checkbox for a responsive menu toggle */
+                display: block;
+                height: 32px;
+                width: 30px;
+                top: 20px;
+                left: 20px;
+                z-index: 5;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .navbar-container .hamburger-lines {
+                display: block; /* Container for hamburger icon */
+                height: 28px;
+                width: 35px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .navbar-container .hamburger-lines .line {
+                display: block; /* Individual lines for the hamburger icon */
+                height: 4px;
+                width: 100%;
+                border-radius: 10px;
+                background: #333;
+            }
+
+            .navbar-container .hamburger-lines .line1 {
+                transform-origin: 0% 0%; /* Animation for line 1 */
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar-container .hamburger-lines .line2 {
+                transition: transform 0.2s ease-in-out; /* Animation for line 2 */
+            }
+
+            .navbar-container .hamburger-lines .line3 {
+                transform-origin: 0% 100%; /* Animation for line 3 */
+                transition: transform 0.3s ease-in-out;
+            }
+
+            .navbar .menu-items {
+                padding-top: 100px; /* Adjust menu items for smaller screens */
+                background: #fff; /* Change menu background color */
+                height: 100vh; /* Set menu height to viewport height */
+                max-width: 300px; /* Limit menu width */
+                transform: translate(-150%); /* Move menu off-screen initially */
+                display: flex; /* Use flex layout */
+                flex-direction: column; /* Stack menu items vertically */
+                margin-left: -40px; /* Offset the menu items to align with the hamburger icon */
+                padding-left: 40px;
+                transition: transform 0.5s ease-in-out; /* Add a sliding animation effect */
+                box-shadow: 5px 0px 10px 0px #aaa; /* Add a box shadow */
+                overflow: scroll; /* Enable scrolling for the menu items if needed */
+            }
+
+            .logo {
+                position: absolute; /* Change position for the logo */
+                top: 10px;
+                right: 15px;
+                font-size: 2.5rem; /* Adjust font size */
+            }
+        }
+
+        @media (max-width: 500px) {
+            .navbar-container input[type="checkbox"]:checked ~ .logo {
+                display: none; /* Hide the logo when the checkbox is checked */
+            }
+        }
+
+        .content {
+            height: 150vh; /* Set the height of the content section */
+            background-image: url('images.jpeg'); /* Set the background image */
+            background-color: #939393; /* Set a background color */
+            background-blend-mode: multiply; /* Adjust the background blend mode */
+            background-size: cover; /* Scale the background image to cover the container */
+            display: grid; /* Use grid layout */
+            place-items: center; /* Center align content in the container */
+        }
+        body {
+            font-family: Arial, sans-serif; /* Set the font family for the entire body */
+            background-color: #e3e3e3; /* Set the background color for the body */
+            margin: 0; /* Reset margin to zero */
+            padding: 0; /* Reset padding to zero */
+        }
+
+        #listingForm {
+            background-color: #d0dad9; /* Set the background color for the listing form */
+            padding: 20px; /* Add padding to the form */
+            margin: 20px; /* Add margin around the form */
+            border-radius: 5px; /* Round the corners of the form */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a box shadow to the form */
+            width: 80%; /* Set the form width */
+            max-width: 800px;
+            margin: 0 auto; /* Center align the form horizontally */
+            margin-top: 80px; /* Add top margin */
+            margin-bottom: 20px; /* Add bottom margin */
+            text-align: center; /* Center align text in the form */
+        }
+
+        #category {
+            width: 50%; /* Set the width of the category input */
+            padding: 10px; /* Add padding */
+            margin: 5px 0; /* Add margin */
+            border: 1px solid #ccc; /* Set border */
+            border-radius: 8px; /* Round the corners of the input */
+        }
+
+        label {
+            font-weight: bold; /* Set font weight for labels */
+            display: inline-block; /* Display labels as block elements */
+            width: 30%; /* Set the width of labels */
+        }
+
+        input[type="text"],
+        select {
+            width: 50%; /* Set the width for text inputs and select elements */
+            padding: 10px; /* Add padding */
+            margin: 5px 0; /* Add margin */
+            border: 1px solid #ccc; /* Set border */
+            border-radius: 8px; /* Round the corners of inputs and select elements */
+        }
+
+        button {
+            background-color: #71a39c; /* Set the background color for buttons */
+            color: #fff; /* Set text color for buttons */
+            border: none; /* Remove button border */
+            padding: 10px 20px; /* Add padding to buttons */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            display: inline-block; /* Display buttons as inline-block elements */
+            border-radius: 8px; /* Round the corners of buttons */
+        }
+
+        button:hover {
+            background-color: #608690; /* Change button background color on hover */
+        }
+
+        .duration-input {
+            display: inline-flex; /* Use inline-flex layout for duration input elements */
+            align-items: center; /* Center align items vertically */
+            gap: 10px; /* Add gap between elements */
+            width: 50%; /* Set the width */
+            margin: 5px 0; /* Add margin */
+            border-radius: 8px; /* Round the corners */
+        }
+
+        .duration-select {
+            flex-grow: 1; /* Allow the select elements to grow within the flex container */
+            border: 1px solid #ccc; /* Set border for select elements */
+            border-radius: 3px; /* Round the corners */
+            padding: 10px; /* Add padding */
+            margin: 5px 0; /* Add margin */
+            border-radius: 8px; /* Round the corners */
+        }
+
+        .error {
+            color: red; /* Set the text color for error messages */
+            font-size: 0.7rem; /* Adjust font size for error messages */
+            text-align: right; /* Right-align error messages */
+        }
+
+        .alert {
+            padding: 20px; /* Add padding to alert messages */
+            background-color: #f44336; /* Set alert background color */
+            color: white; /* Set text color for alerts */
+            opacity: 1; /* Set initial opacity */
+            transition: opacity 0.6s; /* Add opacity transition effect */
+            margin-bottom: 15px; /* Add margin to the bottom of alerts */
+        }
+
+        .alert.success {
+            background-color: #04AA6D; /* Set background color for success alerts */
+        }
+
+        .closebtn {
+            margin-left: 15px; /* Add margin to the left of the close button */
+            color: white; /* Set text color for the close button */
+            font-weight: bold; /* Set font weight for the close button text */
+            float: right; /* Float the close button to the right */
+            font-size: 22px; /* Set font size for the close button */
+            line-height: 20px; /* Set line height for the close button text */
+            cursor: pointer; /* Change cursor to pointer on hover */
+            transition: 0.3s; /* Add a transition effect */
+        }
+
+        .closebtn:hover {
+            color: black; /* Change close button text color on hover */
+        }
+
+        button:disabled {
+            background-color: #CCCCCC; /* Set background color for disabled buttons */
+            color: #999999; /* Set text color for disabled buttons */
+            /* Add any other styles you want for the disabled state */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <ul class="menu-items">
+                <li><a href="#">Home</a></li> <!-- Home link -->
+                <li><a href="listing.htm">Listing</a></li> <!-- Listing link -->
+                <li><a href="bidding.htm">Bidding</a></li> <!-- Bidding link -->
+                <li><a href="maintenance.htm">Maintenance</a></li> <!-- Maintenance link -->
+                <li><a href="login.htm">Logout</a></li> <!-- Logout link -->
+            </ul>
+            <h1 class="logo">ShopOnline</h1> <!-- Logo for the website -->
+        </div>
+    </nav>
+    <div class="content">
+        <form id="listingForm" method="post">
+            <h2><em>To create a listing, enter listing details below.</em></h2> <!-- Form title -->
+            <div><br></div>
+            <fieldset>
+                <legend>Seller Details</legend> <!-- Fieldset legend for seller details -->
+                <br>
+                <div><br></div>
+                <span id="fillOutAllDetailsError" class="error"></span> <!-- Error message -->
+                <div><br></div>
+                <label for="itemName">Item Name:</label> <!-- Label for item name input -->
+                <input type="text" id="itemName" name="itemName" required><br> <!-- Item name input -->
+                <span id="itemNameError" class="error"></span> <!-- Error message for item name -->
+                <div><br></div>
+                <label for="category">Category:</label> <!-- Label for category input -->
+                <select id="category" name="category" required onchange="categoryChange(this)">
+                    <option value="" disabled selected>Select Category</option> <!-- Select category input -->
+                </select><br>
+                <input type="text" id="newCategory" name="newCategory" style="display: none; margin-left: 40%;" required pattern="^[A-Za-z]+$" title="Only alphabetic characters are allowed">
+                <span id="categoryError" class="error"></span> <!-- Error message for category -->
+                <div><br></div>
+                <label for="description">Description:</label> <!-- Label for description input -->
+                <input type="text" id="description" name="description"><br> <!-- Description input -->
+                <span id="descriptionError" class="error"></span> <!-- Error message for description -->
+                <div><br></div>
+                <label for "startPrice">Start Price:</label> <!-- Label for start price input -->
+                <input type="text" id="startPrice" name="startPrice" placeholder="0" disabled required><br> <!-- Start price input -->
+                <span id="startPriceError" class="error"></span> <!-- Error message for start price -->
+                <div><br></div>
+                <label for "reservePrice">Reserve Price:</label> <!-- Label for reserve price input -->
+                <input type="text" id="reservePrice" name="reservePrice" required><br> <!-- Reserve price input -->
+                <span id="reservePriceError" class="error"></span> <!-- Error message for reserve price -->
+                <div><br></div>
+                <label for "buyItNowPrice">Buy It Now Price:</label> <!-- Label for buy it now price input -->
+                <input type="text" id="buyItNowPrice" name="buyItNowPrice" required><br> <!-- Buy It Now price input -->
+                <span id="buyItNowPriceError" class="error"></span> <!-- Error message for Buy It Now price -->
+                <div><br></div>
+
+                <label for "duration">Duration:</label> <!-- Label for duration input -->
+                <div class="duration-input"> <!-- Container for duration input elements -->
+                    <select class="duration-select" id="durationDays" name="durationDays" required>
+                        <option value="0">0 Day</option> <!-- Select input for days -->
+                        <option value="1">1 Day</option>
+                        <option value="2">2 Days</option>
+                        <option value="3">3 Days</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <span id="durationDaysError" class="error"></span> <!-- Error message for days -->
+                    <div><br></div>
+                    <select class="duration-select" id="durationHours" name="durationHours" required>
+                        <option value="0">0 Hours</option> <!-- Select input for hours -->
+                        <option value="1">1 Hour</option>
+                        <option value="2">2 Hours</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <span id="durationHoursError" class="error"></span> <!-- Error message for hours -->
+                    <div><br></div>
+                    <select class="duration-select" id="durationMinutes" name="durationMinutes" required>
+                        <option value="0">0 Minutes</option> <!-- Select input for minutes -->
+                        <option value="1">1 Minute</option>
+                        <option value="5">5 Minutes</option>
+                        <option value="15">15 Minutes</option>
+                        <option value="30">30 Minutes</option>
+                        <!-- Add more options as needed -->
+                    </select>
+
+                    <span id="durationMinutesError" class="error"></span> <!-- Error message for minutes -->
+                    <div><br></div>
+                </div>
+                <br>
+                <br>
+                <button type="button" onclick="createListing()" id="listingButton">Listing</button> <!-- Button to create a listing -->
+                <button type="button" id="resetButton" onclick="resetForm()">Reset</button> <!-- Button to reset the form -->
+                <div><br></div>
+            </fieldset>
+            <div id="message"></div> <!-- Message container -->
+        </form>
+        <div id="message"></div> <!-- Message container -->
+    </div>
+</body>
+</html>

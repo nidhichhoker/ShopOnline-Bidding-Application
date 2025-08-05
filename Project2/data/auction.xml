@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<auction>
+  <item>
+    <itemNumber>item4239</itemNumber>
+    <sellercustomerid>customer_5964</sellercustomerid>
+    <itemName>car</itemName>
+    <category>vehicle</category>
+    <description>black car</description>
+    <reservePrice>12</reservePrice>
+    <buyItNowPrice>14</buyItNowPrice>
+    <startPrice>14</startPrice>
+    <auctionStartDate>2025-08-05 15:24:08</auctionStartDate>
+    <auctionEndDate>2025-08-05 17:24:08</auctionEndDate>
+    <bidcustomerid>customer_5964</bidcustomerid>
+    <currentBidPrice>0</currentBidPrice>
+    <status>sold</status>
+    <durationDays>0</durationDays>
+    <durationHours>2</durationHours>
+    <durationMinutes>0</durationMinutes>
+  </item>
+</auction>

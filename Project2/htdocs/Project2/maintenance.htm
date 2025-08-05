@@ -1,0 +1,250 @@
+<html>
+
+<head>
+    <title>ShopOnline - Maintenance Page</title>
+
+    <style>
+        /* Reset CSS */
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Root font size */
+        .html {
+            font-size: 62.5%;
+        }
+
+        /* Page container styles */
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            box-shadow: 0px 5px 10px 0px #aaa;
+            position: fixed;
+            width: 100%;
+            background: #d0dad9;
+            color: #000;
+            opacity: 1.85;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            height: 64px;
+            align-items: center;
+        }
+
+        /* Menu items in the navbar */
+        .menu-items {
+            order: 2;
+            display: flex;
+        }
+
+        .logo {
+            order: 1;
+            font-size: 2.3rem;
+        }
+
+        .menu-items li {
+            list-style: none;
+            margin-left: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .navbar a {
+            color: #444;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #117964;
+        }
+
+        @media (max-width: 768px) {
+            /* Styles for smaller screens */
+            .navbar {
+                opacity: 0.95;
+            }
+
+            .navbar-container input[type="checkbox"] {
+                position: absolute;
+                display: block;
+                height: 32px;
+                width: 30px;
+                top: 20px;
+                left: 20px;
+                z-index: 5;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            .navbar-container {
+                display: block;
+                height: 28px;
+                width: 35px;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            .navbar .menu-items {
+                padding-top: 100px;
+                background: #fff;
+                height: 100vh;
+                max-width: 300px;
+                transform: translate(-150%);
+                display: flex;
+                flex-direction: column;
+                margin-left: -40px;
+                padding-left: 40px;
+                transition: transform 0.5s ease-in-out;
+                box-shadow: 5px 0px 10px 0px #aaa;
+                overflow: scroll;
+            }
+
+            .logo {
+                position: absolute;
+                top: 10px;
+                right: 15px;
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .navbar-container input[type="checkbox"]:checked ~ .logo {
+                display: none;
+            }
+        }
+
+        /* Content section styles */
+        .content {
+            height: 1000vh;
+            background-image: url('images.jpeg');
+            background-color: #939393;
+            background-blend-mode: multiply;
+            background-size: cover;
+            display: grid;
+            place-items: left;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 0;
+            background-color: #d0dad9;
+        }
+
+        /* Button container styles */
+        .button-container {
+            position: fixed;
+            margin-top: 10px;
+        }
+
+        .custom-button {
+            background-color: #71a39c;
+            color: #fff;
+            border: none;
+            margin-top: 100px;
+            padding: 18px 289px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+
+        .custom-button2 {
+            background-color: #f8f8f8;
+            color: #71a39c;
+            border: none;
+            margin-top: 100px;
+            padding: 25px 150px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+
+        .custom-button:hover {
+            background-color: #608690;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th {
+            background-color: #71a39c;
+            color: #fff;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <ul class="menu-items">
+                <li><a href="#">Home</a></li>
+                <li><a href="listing.htm">Listing</a></li>
+                <li><a href="bidding.htm">Bidding</a></li>
+                <li><a href="maintenance.htm">Maintenance</a></li>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+            <h1 class="logo">ShopOnline</h1>
+        </div>
+    </nav>
+
+    <!-- Spacer -->
+    <div><br><br><br></div>
+
+    <!-- Button Container -->
+    <div class="button-container">
+        <button class="custom-button" onclick="processAuctionItems();">Process Auction Items</button>
+        <button class="custom-button" onclick="generateReport();">Generate Report</button>
+        <button onclick="removeSoldAndFailedItems()" class="custom-button2" id="removeitems"
+            style="display:none;">Remove Sold/Failed Items</button>
+        <span id="results"></span>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <div id="message"></div>
+    </div>
+
+    <!-- Include JavaScript file -->
+    <script type="text/javascript" src="maintenance.js"></script>
+</body>
+
+</html>

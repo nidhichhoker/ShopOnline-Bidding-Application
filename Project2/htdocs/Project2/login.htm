@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShopOnline - Login Page</title>
+    <script src="login.js"></script>
+    <style>
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .html {
+            font-size: 62.5%;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .navbar {
+            box-shadow: 0px 5px 10px 0px #aaa;
+            position: fixed;
+            width: 100%;
+            background: #fff;
+            color: #000;
+            opacity: 0.85;
+            z-index: 100;
+        }
+
+        h3{
+            color: #292c2b;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            height: 64px;
+            align-items: center;
+        }
+
+        .menu-items {
+            order: 2;
+            display: flex;
+        }
+
+        .logo {
+            order: 1;
+            font-size: 2.3rem;
+        }
+
+        
+
+        .navbar a {
+            color: #444;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #117964;
+        }
+
+       
+            
+
+
+        @media (max-width: 500px) {
+            .navbar-container input[type="checkbox"]:checked ~ .logo {
+                display: none;
+            }
+        }
+
+        .content {
+            height: 100vh;
+            background-image: url('images.jpeg');
+            background-color: #939393;
+            background-blend-mode: multiply;
+            background-size: cover;
+            display: grid;
+            place-items: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3e3e3;
+            margin: 0;
+            padding: 0;
+        }
+    
+        #loginForm {
+            background-color: #d0dad9;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: 80px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    
+        #category {
+            width: 50%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    
+        label {
+            font-weight: bold;
+            display: inline-block;
+            width: 30%;
+        }
+    
+        input[type="text"],
+        select {
+            width: 50%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input[type="password"],
+        select {
+            width: 50%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        input[type="submit"],
+        select {
+            background-color: #71a39c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 8px;
+        }
+    
+        button {
+            background-color: #71a39c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 8px;
+        }
+    
+        button:hover {
+            background-color: #003399;
+        }
+    
+      
+        .alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+}
+
+.alert.success {background-color: #04AA6D;}
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+   
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <ul class="menu-items">
+               
+                    <li><a href="#">Home</a></li> <!-- Home link -->
+                    <li><a href="listing.htm">Listing</a></li> <!-- Listing link -->
+                    <li><a href="bidding.htm">Bidding</a></li> <!-- Bidding link -->
+                    <li><a href="maintenance.htm">Maintenance</a></li> <!-- Maintenance link -->
+                    <li><a href="login.htm">Logout</a></li> <!-- Logout link -->
+        
+            </ul>
+            <h1 class="logo">ShopOnline</h1>
+        </div>
+    </nav>
+    <div class="content">
+        <form id="loginForm" method="post">
+            <h2>Login</h2>
+            <div>
+                <br>
+            </div>
+         
+           
+            <fieldset>
+                <br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br>
+    
+            
+    
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password"><br>
+            <div>
+                <br>
+            </div>
+            <h3>New Member ?  <a href="register.htm"> Register now</a></h3>
+            <div>
+                <br>
+            </div>
+            <input type="submit" value="Sign In" onclick="loginUser(event)">
+           
+            <div>
+                <br>
+            </div>
+            
+        </fieldset>
+        <div id="message"></div>
+        </form>
+    </div>
+    
+</body>
+</html>
